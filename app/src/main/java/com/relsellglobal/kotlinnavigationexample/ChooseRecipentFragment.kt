@@ -1,10 +1,13 @@
 package com.relsellglobal.kotlinnavigationexample
 
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.relsellglobal.kotlinnavigationexample.databinding.FragmentChooseRecipentBinding
@@ -54,7 +57,12 @@ class ChooseRecipentFragment : Fragment(),View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.next_btn -> {
-                navController?.navigate(R.id.action_chooseRecipentFragment_to_specifyAmountFragment2)
+                if(!TextUtils.isEmpty(fragmentChooseRecipentFragment?.inputRecipient?.text.toString())) {
+                    val bundle = bundleOf("recipient" to fragmentChooseRecipentFragment?.inputRecipient?.text.toString())
+                    navController?.navigate(R.id.action_chooseRecipentFragment_to_specifyAmountFragment2,bundle)
+                } else {
+                    Toast.makeText(activity,"Enter an recipient", Toast.LENGTH_SHORT).show()
+                }
             }
             R.id.cancel_btn -> {
                 activity?.onBackPressed()
