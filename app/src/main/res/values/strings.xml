@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">KotlinNavigationExample</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textview_1">TextView</string>
+    <string name="view_transactions">View transactions</string>
+    <string name="send_money">Send money</string>
+    <string name="view_balance">View balance</string>
+</resources>
