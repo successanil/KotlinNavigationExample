@@ -69,6 +69,11 @@ dependencies {
     debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
     implementation "androidx.fragment:fragment:$fragment_version"
 
+    // truth by google
+    testImplementation "com.google.truth:truth:1.0.1"
+    androidTestImplementation "com.google.truth:truth:1.0.1"
+
+
 
 
 
