@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.relsellglobal.kotlinnavigationexample.databinding.FragmentMainBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -21,9 +22,8 @@ private const val ARG_PARAM2 = "param2"
  */
 class MainFragment : Fragment(), View.OnClickListener {
 
-    var navController : NavController ?= null
-    var fragmentMainBinding : FragmentMainBinding ?= null
-
+    var navController: NavController? = null
+    var fragmentMainBinding: FragmentMainBinding? = null
 
 
     override fun onCreateView(
@@ -31,23 +31,32 @@ class MainFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        fragmentMainBinding = FragmentMainBinding.inflate(inflater,container,false)
+        fragmentMainBinding = FragmentMainBinding.inflate(inflater, container, false)
         return fragmentMainBinding?.root!!
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(view)
+        // navController = Navigation.findNavController(view)
         fragmentMainBinding?.viewTransactionsBtn?.setOnClickListener(this)
         fragmentMainBinding?.sendMoneyBtn?.setOnClickListener(this)
         fragmentMainBinding?.viewBalanceBtn?.setOnClickListener(this)
     }
 
-    override fun onClick(v: View?) {
-        when(v?.id) {
-            R.id.view_transactions_btn -> navController?.navigate(R.id.action_mainFragment_to_viewTransactionFragment)
-            R.id.send_money_btn -> navController?.navigate(R.id.action_mainFragment_to_chooseRecipentFragment)
-            R.id.view_balance_btn -> navController?.navigate(R.id.action_mainFragment_to_viewBalanceFragment)
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.view_transactions_btn -> {
+                navController = v.findNavController()
+                navController?.navigate(R.id.action_mainFragment_to_viewTransactionFragment)
+            }
+            R.id.send_money_btn -> {
+                navController = v.findNavController()
+                navController?.navigate(R.id.action_mainFragment_to_chooseRecipentFragment)
+            }
+            R.id.view_balance_btn -> {
+                navController = v.findNavController()
+                navController?.navigate(R.id.action_mainFragment_to_viewBalanceFragment)
+            }
         }
     }
 
